@@ -84,7 +84,31 @@ sudo systemctl enable --now nginx
 sudo systemctl enable --now mariadb
 sudo systemctl enable --now php8.4-fpm
 ```
+---
+#### Ajustes recomendados de PHP
 
+Crea un archivo de configuracion para tu sitio:
+
+```bash
+sudo nano /etc/php/8.4/fpm/conf.d/99-justecno.ini
+```
+
+Pega esto:
+
+```ini
+upload_max_filesize = 64M
+post_max_size = 64M
+memory_limit = 256M
+max_execution_time = 300
+max_input_vars = 3000
+```
+
+Guarda y reinicia PHP-FPM:
+
+```bash
+sudo systemctl restart php8.4-fpm
+```
+---
 Verifica PHP:
 
 ```bash
